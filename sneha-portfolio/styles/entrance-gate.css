@@ -1,0 +1,376 @@
+/* ================================================================
+   entrance-gate.css — fullscreen portal layout, panel text, gallery
+   ================================================================ */
+
+/* ---- Root layout ---- */
+.entrance-gate-root {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #0f0f0f;
+  overflow-x: hidden;
+}
+
+/* ---- Fixed 3D canvas (full viewport) ---- */
+.entrance-gate-canvas-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: auto;
+}
+
+.entrance-gate-canvas-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ---- Invisible spacer below the canvas so the page is scrollable ---- */
+.entrance-gate-spacer {
+  position: relative;
+  z-index: 0;
+  height: 100vh;
+  width: 1px;
+  pointer-events: none;
+}
+
+/* ================================================================
+   Left Panel Text (Html overlay inside R3F)
+   ================================================================ */
+.entrance-left-panel {
+  font-family: var(--font-geist-sans, 'Inter', 'Segoe UI', system-ui, sans-serif);
+  color: #ffffff;
+  user-select: none;
+  pointer-events: none;
+  max-width: 280px;
+}
+
+.entrance-left-panel__badge {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d4a853;
+  border: 1px solid rgba(212, 168, 83, 0.25);
+  border-radius: 100px;
+  padding: 4px 12px;
+  margin-bottom: 18px;
+}
+
+.entrance-left-panel__headline {
+  margin: 0 0 6px;
+  line-height: 1.1;
+}
+
+.entrance-left-panel__headline-main {
+  display: block;
+  font-size: 38px;
+  font-weight: 200;
+  letter-spacing: 0.04em;
+  color: #f0eadb;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.entrance-left-panel__headline-sep {
+  display: block;
+  color: #d4a853;
+  font-size: 14px;
+  margin: 4px 0;
+  opacity: 0.6;
+}
+
+.entrance-left-panel__headline-sub {
+  display: block;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d4a853;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.entrance-left-panel__tagline {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #c8bfb0;
+  margin: 12px 0 16px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.entrance-left-panel__divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.entrance-left-panel__divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.25), transparent);
+}
+
+.entrance-left-panel__divider-dot {
+  font-size: 8px;
+  color: #d4a853;
+  opacity: 0.5;
+}
+
+/* ================================================================
+   Right Panel Text (Html overlay inside R3F)
+   ================================================================ */
+.entrance-right-panel {
+  font-family: var(--font-geist-sans, 'Inter', 'Segoe UI', system-ui, sans-serif);
+  color: #e8e0d0;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.entrance-right-panel__board {
+  background: rgba(24, 24, 28, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 18px 20px;
+  width: 240px;
+  backdrop-filter: blur(4px);
+}
+
+.entrance-right-panel__heading {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #d4a853;
+  margin: 0 0 12px;
+  font-weight: 500;
+}
+
+.entrance-right-panel__text {
+  font-size: 12px;
+  line-height: 1.65;
+  color: #b8b0a0;
+  margin: 0 0 10px;
+  font-weight: 300;
+}
+
+.entrance-right-panel__text--focus {
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Meta rows */
+.entrance-right-panel__meta {
+  padding: 10px 0 8px;
+}
+
+.entrance-right-panel__meta-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  font-size: 11px;
+}
+
+.entrance-right-panel__meta-label {
+  color: #6b6256;
+  letter-spacing: 0.04em;
+}
+
+.entrance-right-panel__meta-value {
+  color: #d0c8b8;
+  font-weight: 400;
+}
+
+/* Social pills */
+.entrance-right-panel__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.entrance-right-panel__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  font-size: 11px;
+  color: #c0b8a8;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+.entrance-right-panel__pill:hover {
+  border-color: #d4a853;
+  color: #d4a853;
+  background: rgba(212, 168, 83, 0.06);
+}
+
+.entrance-right-panel__pill-icon {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+.entrance-right-panel__pill-arrow {
+  font-size: 10px;
+  transition: transform 0.2s ease;
+  margin-left: 2px;
+}
+
+.entrance-right-panel__pill:hover .entrance-right-panel__pill-arrow {
+  transform: translateX(2px);
+}
+
+/* ================================================================
+   Gallery Content (revealed after entrance transition)
+   ================================================================ */
+.entrance-gate-gallery {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  background: #0f0f0f;
+  padding: 60px 5%;
+  will-change: opacity, transform;
+}
+
+.entrance-gate-gallery__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.entrance-gate-gallery__badge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #d4a853;
+  border: 1px solid rgba(212, 168, 83, 0.2);
+  border-radius: 100px;
+  padding: 5px 14px;
+  margin-bottom: 24px;
+}
+
+.entrance-gate-gallery__title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 200;
+  letter-spacing: 0.04em;
+  color: #f0eadb;
+  margin: 0 0 16px;
+  line-height: 1.1;
+}
+
+.entrance-gate-gallery__desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #9a8f7f;
+  max-width: 560px;
+  margin: 0 0 48px;
+  font-weight: 300;
+}
+
+/* Project grid */
+.entrance-gate-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.entrance-gate-gallery__card {
+  background: #18181c;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.entrance-gate-gallery__card:hover {
+  border-color: rgba(212, 168, 83, 0.3);
+  transform: translateY(-4px);
+}
+
+.entrance-gate-gallery__card-image {
+  height: 180px;
+  background: linear-gradient(135deg, #2a2020 0%, #1a1a24 100%);
+  background-size: cover;
+}
+
+.entrance-gate-gallery__card:nth-child(1) .entrance-gate-gallery__card-image {
+  background: linear-gradient(135deg, #2a1a1a 0%, #1a1a24 50%, #1a2420 100%);
+}
+.entrance-gate-gallery__card:nth-child(2) .entrance-gate-gallery__card-image {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2a1a1a 50%, #1a2420 100%);
+}
+.entrance-gate-gallery__card:nth-child(3) .entrance-gate-gallery__card-image {
+  background: linear-gradient(135deg, #1a2420 0%, #2a1a1a 50%, #1a1a2e 100%);
+}
+
+.entrance-gate-gallery__card-info {
+  padding: 16px 20px;
+}
+
+.entrance-gate-gallery__card-info h3 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #e8e0d0;
+  margin: 0 0 4px;
+}
+
+.entrance-gate-gallery__card-info p {
+  font-size: 12px;
+  color: #6b6256;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+/* ================================================================
+   Responsive
+   ================================================================ */
+@media (max-width: 768px) {
+  .entrance-left-panel__headline-main {
+    font-size: 28px;
+  }
+
+  .entrance-left-panel__headline-sub {
+    font-size: 14px;
+  }
+
+  .entrance-left-panel {
+    max-width: 200px;
+  }
+
+  .entrance-right-panel__board {
+    width: 190px;
+    padding: 14px 16px;
+  }
+
+  .entrance-right-panel__text {
+    font-size: 11px;
+  }
+
+  .entrance-gate-gallery__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .entrance-gate-gallery {
+    padding: 40px 4%;
+  }
+}
+
+@media (max-width: 480px) {
+  .entrance-left-panel__headline-main {
+    font-size: 22px;
+  }
+
+  .entrance-left-panel {
+    max-width: 160px;
+  }
+
+  .entrance-right-panel__board {
+    width: 160px;
+    padding: 12px 14px;
+  }
+}
