@@ -12,21 +12,21 @@ export default function ArchShell() {
   const { shape, geomArgs } = useMemo(() => {
     const s = new THREE.Shape();
 
-    // Outer boundary: classic European museum portal
-    s.moveTo(-3.8, -3);
-    s.lineTo(-3.8, 1.2);
-    s.quadraticCurveTo(-3.8, 4.2, 0, 4.2);
-    s.quadraticCurveTo(3.8, 4.2, 3.8, 1.2);
-    s.lineTo(3.8, -3);
-    s.lineTo(-3.8, -3);
+    // Outer boundary: classic European museum portal (20% wider)
+    s.moveTo(-4.6, -3);
+    s.lineTo(-4.6, 1.2);
+    s.quadraticCurveTo(-4.6, 4.2, 0, 4.2);
+    s.quadraticCurveTo(4.6, 4.2, 4.6, 1.2);
+    s.lineTo(4.6, -3);
+    s.lineTo(-4.6, -3);
 
-    // Doorway cutout (semicircular arch)
+    // Doorway cutout (semicircular arch — 20% wider)
     const hole = new THREE.Path();
-    hole.moveTo(-1.3, -3);
-    hole.lineTo(-1.3, 1.2);
-    hole.quadraticCurveTo(-1.3, 3.4, 0, 3.4);
-    hole.quadraticCurveTo(1.3, 3.4, 1.3, 1.2);
-    hole.lineTo(1.3, -3);
+    hole.moveTo(-1.56, -3);
+    hole.lineTo(-1.56, 1.2);
+    hole.quadraticCurveTo(-1.56, 3.4, 0, 3.4);
+    hole.quadraticCurveTo(1.56, 3.4, 1.56, 1.2);
+    hole.lineTo(1.56, -3);
     s.holes.push(hole);
 
     return {

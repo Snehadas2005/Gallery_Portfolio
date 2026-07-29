@@ -25,12 +25,12 @@ export default function DoorwayScene({ onEnter, cameraRef }) {
     }
   }, [camera, cameraRef]);
 
-  // Left red wall: an arched shape filling the left half of the interior
+  // Left red wall: an arched shape filling the left half of the interior (20% wider)
   const leftWallShape = useMemo(() => {
     const s = new THREE.Shape();
-    s.moveTo(-3.5, -2.9);
-    s.lineTo(-3.5, 1.1);
-    s.quadraticCurveTo(-3.5, 4.0, 0, 4.0);
+    s.moveTo(-4.2, -2.9);
+    s.lineTo(-4.2, 1.1);
+    s.quadraticCurveTo(-4.2, 4.0, 0, 4.0);
     s.lineTo(0, 4.0);
     s.lineTo(0, -2.9);
     s.closePath();
@@ -87,7 +87,7 @@ export default function DoorwayScene({ onEnter, cameraRef }) {
         position={[0, -2.95, -0.8]}
         receiveShadow
       >
-        <planeGeometry args={[14, 10]} />
+        <planeGeometry args={[17, 10]} />
         <meshStandardMaterial
           color="#8b7f6e"
           roughness={0.95}
@@ -115,8 +115,8 @@ export default function DoorwayScene({ onEnter, cameraRef }) {
       </mesh>
 
       {/* Red wall gradient accent — a subtle inner glow plane */}
-      <mesh position={[-1.6, 0.5, -0.28]}>
-        <planeGeometry args={[2.8, 5.0]} />
+      <mesh position={[-1.9, 0.5, -0.28]}>
+        <planeGeometry args={[3.0, 5.0]} />
         <meshBasicMaterial
           color="#A8131A"
           transparent
@@ -126,7 +126,7 @@ export default function DoorwayScene({ onEnter, cameraRef }) {
       </mesh>
 
       {/* ===== RIGHT DARK EXHIBITION BOARD ===== */}
-      <group position={[2.1, -0.15, -0.3]}>
+      <group position={[2.52, -0.15, -0.3]}>
         {/* Main board */}
         <mesh receiveShadow>
           <boxGeometry args={[1.7, 4.8, 0.08]} />
@@ -160,7 +160,7 @@ export default function DoorwayScene({ onEnter, cameraRef }) {
 
       {/* ===== DOORWAY WARM GLOW ===== */}
       <mesh position={[0, 0.6, -1.2]}>
-        <planeGeometry args={[2.0, 4.0]} />
+        <planeGeometry args={[2.4, 4.0]} />
         <meshBasicMaterial
           color="#f5d7a0"
           transparent
@@ -171,7 +171,7 @@ export default function DoorwayScene({ onEnter, cameraRef }) {
 
       {/* Bright threshold strip at floor level */}
       <mesh position={[0, -2.6, -0.8]}>
-        <planeGeometry args={[2.4, 0.6]} />
+        <planeGeometry args={[2.88, 0.6]} />
         <meshBasicMaterial
           color="#fae6c8"
           transparent

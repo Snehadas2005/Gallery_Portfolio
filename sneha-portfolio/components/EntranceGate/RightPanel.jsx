@@ -17,7 +17,7 @@ export default function RightPanel() {
   return (
     <Html
       transform
-      position={[2.05, 1.15, -0.15]}
+      position={[2.46, 1.15, -0.15]}
       distanceFactor={1.8}
     >
       <div className="entrance-right-panel">

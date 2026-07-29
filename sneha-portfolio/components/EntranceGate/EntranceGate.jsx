@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback } from 'react';
 import { Canvas } from '@react-three/fiber';
 import dynamic from 'next/dynamic';
 import { useEnterTransition } from '@/hooks/useEnterTransition';
@@ -14,42 +14,33 @@ const DoorwayScene = dynamic(() => import('./DoorwayScene'), { ssr: false });
  * Layout:
  *   - Fixed full-viewport 3D Canvas (the entrance scene)
  *   - Invisible scroll-spacer div so the browser has scrollable height
- *   - Hidden gallery div revealed after the GSAP transition completes
+ *   - Gallery div (initially opacity: 0) revealed after the GSAP transition
  *
- * Scroll or click the floating marker → GSAP camera zoom →
- * canvas fades out → gallery content slides in.
+ * Scroll down OR click the floating arrow → GSAP camera zoom → canvas fades
+ * out → gallery slides in. Scroll back up to reverse and restore the entrance.
  */
 export default function EntranceGate() {
-  const [phase, setPhase] = useState('entrance'); // 'entrance' | 'gallery'
   const cameraRef = useRef(null);
   const canvasWrapRef = useRef(null);
   const galleryRef = useRef(null);
-  const triggeredRef = useRef(false);
 
-  const handleEnterComplete = useCallback(() => {
-    setPhase('gallery');
-  }, []);
-
-  const handleEnter = useCallback(() => {
-    if (triggeredRef.current) return;
-    triggeredRef.current = true;
-    startTransition();
-  }, []);
-
-  // useEnterTransition sets up GSAP for click and scroll triggering
+  // useEnterTransition builds the GSAP timeline and returns the click trigger
   const startTransition = useEnterTransition({
     cameraRef,
     canvasWrapRef,
     galleryRef,
-    onEnterComplete: handleEnterComplete,
   });
+
+  const handleEnter = useCallback(() => {
+    startTransition();
+  }, [startTransition]);
 
   return (
     <div className="entrance-gate-root">
       {/* ----- 3D Canvas (fixed, fullscreen) ----- */}
       <div ref={canvasWrapRef} className="entrance-gate-canvas-wrap">
         <Canvas
-          camera={{ position: [0, 1.2, 8], fov: 42, near: 0.1, far: 30 }}
+          camera={{ position: [0, 0, 9], fov: 45, near: 0.1, far: 30 }}
           dpr={[1, 2]}
           gl={{ antialias: true, alpha: false }}
           className="entrance-gate-canvas"
@@ -61,10 +52,10 @@ export default function EntranceGate() {
         </Canvas>
       </div>
 
-      {/* ----- Scroll spacer (invisible, enables scroll detection) ----- */}
+      {/* ----- Scroll spacer (invisible, enables scroll) ----- */}
       <div className="entrance-gate-spacer" aria-hidden="true" />
 
-      {/* ----- Gallery content (revealed after transition) ----- */}
+      {/* ----- Gallery content (revealed after entrance transition) ----- */}
       <div
         ref={galleryRef}
         className="entrance-gate-gallery"

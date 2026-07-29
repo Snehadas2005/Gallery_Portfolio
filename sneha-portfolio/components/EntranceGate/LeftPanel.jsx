@@ -10,7 +10,7 @@ export default function LeftPanel() {
   return (
     <Html
       transform
-      position={[-2.4, 1.8, -0.15]}
+      position={[-2.88, 1.8, -0.15]}
       distanceFactor={1.8}
     >
       <div className="entrance-left-panel">
